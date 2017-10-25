@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% title %}
+<title> Register </title>
+{% endblock %}
+
+{% block %}
+<h2> Register </h2>
+<form method="POST" action="/CreateAccount">
+  Username: 
+  <input type="text" name="username">
+  <br>
+  Password: 
+  <input type="password" name="password">
+  <br>
+  <input type="submit" value="Register" name="submit">
+</form>
+<br>
+<!--insert link to login page here -->
+{% endblock %}
