@@ -32,16 +32,16 @@ def CreateAccount():
     #if user is already logged in, redirect to Welcome
     if checkSession():
         return redirect(url_for("Welcome"))
-    else:
-        #if user is not logged in, but the inputted username is already taken, flash message and redirect to Register
-        if database.checkUsernames(request.form["username"]):
-            flash("Username already taken")
-            return redirect(url_for("Register"))
-        #othwerwise, create the account and redirect to Root
-        else:
-            database.createAccount(request.form["username"], request.form["password"])
-            flash ("Account succesfully created. Please login again")
-            return ridirect(url_for("Root"))
+    #if username exits, flash message and redirect to Register
+    postedUsername = request.form["username"]
+    postedPassword = request.form["password"]
+    if database.checkUsernames(postedUsername):
+        flash("Username already taken")
+        return redirect(url_for("Register"))
+    #othwerwise, create the account and redirect to Root
+    database.createAccount(postedUsername, postedPassword)
+    flash ("Account succesfully created. Please login again")
+    return ridirect(url_for("Root"))
             
 @app.route("/Authorize", methods=["GET", "POST"])
 def Authorize():
@@ -49,9 +49,11 @@ def Authorize():
     if checkSession():
         return redirect(url_for("Welcome"))
     #check if the submitted login information is correct, and then store a session with the userId
-    if database.checkUsernames(request.form["username"]):
-        if database.authorize(request.form["username"], request.form["password"]):
-            session["userID"] = database.getUserID(request.form["username"])
+    postedUsername = request.form["username"]
+    postedPassword = request.form["password"]
+    if database.checkUsernames(postedUsername):
+        if database.authorize(postedUsername, postedPassword):
+            session["userID"] = database.getUserID(postedUsername)
             return redirect(url_for("Welcome"))
     #if the submitted login information is not correct, redirect to Welcome, flash a message
     flash("Incorrect username, password combination")
@@ -77,7 +79,8 @@ def Welcome():
 def Logout():
     #if user is logged in, remove the session
     if checkSession():
-        session.pop("userId")
+        session.pop("userID")
+        flash("Successfuly logged out")
     #redirect to Root regardless
     return redirect(url_for("Root"))
 
