@@ -2,12 +2,8 @@
 
 import sqlite3   #enable control of an sqlite database
 
-f="../data/dummy.db"
-db = sqlite3.connect(f) #open if f exists, otherwise create
-c = db.cursor()    #facilitate db ops
-
 def openDatabase():
-    f="../data/dummy.db"
+    f="data/dummy.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     return db, db.cursor()    #facilitate db ops
 
@@ -111,7 +107,7 @@ def getStory(title):
 # START ALL OUR TESTS
 
 # updateUsers('"debra"', '"itsstorytime"') -> function works
-print authorize('alice', 'pass', c) # should print true
+'''print authorize('alice', 'pass', c) # should print true
 print authorize('alice', 'pas', c) # should print false
 print checkUsernames('alice', c) # should print true
 print checkUsernames('eliza', c) # should print false
@@ -131,4 +127,4 @@ print getStory("DW", c)
 
 
 db.commit() #save changes
-db.close()  #close database
+db.close()  #close database'''

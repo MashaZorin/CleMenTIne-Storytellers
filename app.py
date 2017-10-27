@@ -50,7 +50,7 @@ def Authorize():
         return redirect(url_for("Welcome"))
     #check if the submitted login information is correct, and then store a session with the userId
     if database.authorize(request.form["username"], request.form["password"]):
-        session["userId"] = database.getUserId(request.form["username"])
+        session["userId"] = database.getUserID(request.form["username"])
     #if the submitted login information is not correct, redirect to Welcome, flash a message
     else:
         flash("Incorrect username, password combination")
@@ -66,7 +66,7 @@ def Welcome():
     #renders Welcome template, and passes variables for username, and an array of edited, and not-edited stories
     return render_template("Welcome.html", userId = tempUserId, \
     titles_edited = database.checkEdited(tempUserId), \
-    titles_not_edited = database.checkNotEdited(tempUserId)
+    titles_not_edited = database.checkNotEdited(tempUserId))
 
 @app.route("/Logout", methods=["GET, POST"])
 def Logout():
