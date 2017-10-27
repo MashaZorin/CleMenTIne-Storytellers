@@ -68,7 +68,9 @@ def addLine(line, story_title, userid):
     storyid = getStoryID(story_title)
     cm = 'INSERT INTO edited VALUES (%d, %d)' %(userid, storyid)
     c.execute(cm)
-    cm = 'UPDATE log SET '
+    cm = 'UPDATE log SET lastLine = "%s" WHERE storyId = %d' %(line, storyid)
+    c.execute(cm)
+    x = c.execute('SELECT body FROM log WHERE storyId = %d')[0] %storyid
 
 # END FUNCTIONS
 
@@ -100,6 +102,9 @@ def getStory(title):
     closeDatabase(db)
     return x
 
+def checkEdited():
+    return "edited"
+
 # END ALL OUR GET FUNCTIONS
 
 
@@ -120,11 +125,6 @@ print getUserID('debra', c)
 print getStoryID("Tail", c)
 print getStoryID("DW", c)
 print getStory("Tail", c)
-print getStory("DW", c)
+print getStory("DW", c)'''
 
 # END ALL OUR TESTS
-
-
-
-db.commit() #save changes
-db.close()  #close database'''
