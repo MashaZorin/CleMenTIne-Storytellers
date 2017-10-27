@@ -9,7 +9,7 @@ app.secret_key=urandom(32)
 #helper method
 #return true if a user is logged in
 def checkSession():
-    return "userId" in session
+    return "userID" in session
 
 @app.route("/")
 def Root():
@@ -49,24 +49,29 @@ def Authorize():
     if checkSession():
         return redirect(url_for("Welcome"))
     #check if the submitted login information is correct, and then store a session with the userId
-    if database.authorize(request.form["username"], request.form["password"]):
-        session["userId"] = database.getUserID(request.form["username"])
+    if database.checkUsernames(request.form["username"]):
+        if database.authorize(request.form["username"], request.form["password"]):
+            session["userID"] = database.getUserID(request.form["username"])
+            return redirect(url_for("Welcome"))
     #if the submitted login information is not correct, redirect to Welcome, flash a message
-    else:
-        flash("Incorrect username, password combination")
-        return redirect(url_for("Login"))
+    flash("Incorrect username, password combination")
+    return redirect(url_for("Root"))
 
 @app.route("/Welcome", methods=["GET", "POST"])
 def Welcome():
+    #session.pop("userID")
     #if user is not logged in, redirect to Root
     if not checkSession():
         return redirect(url_for("Root"))
     #otherwise, acess inputted data from form
-    tempUserId = session["userid"]
+    tempUserId = session["userID"]
     #renders Welcome template, and passes variables for username, and an array of edited, and not-edited stories
-    return render_template("Welcome.html", userId = tempUserId, \
+    return "Welcome place holder"
+    
+    #add this stuff when database methods are ready
+    '''render_template("Welcome.html", userId = tempUserId, \
     titles_edited = database.checkEdited(tempUserId), \
-    titles_not_edited = database.checkNotEdited(tempUserId))
+    titles_not_edited = database.checkNotEdited(tempUserId))'''
 
 @app.route("/Logout", methods=["GET, POST"])
 def Logout():
