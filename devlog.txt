@@ -3,3 +3,12 @@ built the updateUsers() and authorize() functions in database.py
 
 tiffanyC -- 2017-10-25 14:03
 built get functions, checkUsernames(), and started addLine(). only checkUsernames() and getUserID() were tested.
+
+tiffanyC -- 2017-10-26 14:00
+tested all functions that were build but not tested. added to addLine(). built openDatabase() and closeDatabase() functions so that database.py can be imported well into app.py.
+
+tiffanyC -- 2017-10-27 11:20
+built getEdited() and finished addLine().
+
+tiffanyC -- 2017-10-28 13:20
+built getNotEdited() and newStory(). tested everything.

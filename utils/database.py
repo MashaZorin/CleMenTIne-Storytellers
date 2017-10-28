@@ -46,7 +46,7 @@ def updateUsers(username, password):
     cm = "SELECT COUNT(*) FROM userInfo;"
     for i in c.execute(cm):
         userID = i[0]
-    cm = 'INSERT INTO userInfo VALUES("%s", "%s", %d)' %(username, password, userID)
+    cm = 'INSERT INTO userInfo VALUES("%s", "%s", %d);' %(username, password, userID)
     c.execute(cm)
     closeDatabase(db)
 
@@ -66,11 +66,29 @@ def addLine(line, story_title, userid):
     #called when a user submits an edit to a story
     db, c = openDatabase()
     storyid = getStoryID(story_title)
-    cm = 'INSERT INTO edited VALUES (%d, %d)' %(userid, storyid)
+    cm = 'INSERT INTO edited VALUES (%d, %d);' %(userid, storyid)
     c.execute(cm)
-    cm = 'UPDATE log SET lastLine = "%s" WHERE storyId = %d' %(line, storyid)
+    cm = 'UPDATE log SET lastLine = "%s" WHERE storyId = %d;' %(line, storyid)
     c.execute(cm)
-    x = c.execute('SELECT body FROM log WHERE storyId = %d')[0] %storyid
+    x = c.execute('SELECT body FROM log WHERE storyId = %d;' %storyid)
+    for i in x:
+        text = i[0]
+    cm = 'UPDATE log SET body = "%s" WHERE storyId = %d;' %(text + " " + line, storyid)
+    c.execute(cm)
+    closeDatabase(db)
+
+def newStory(line, title, userid):
+    #creates a new story
+    #called when user submits a new story to the website
+    db, c = openDatabase()
+    cm = "SELECT COUNT(*) FROM log;"
+    for i in c.execute(cm):
+        storyid = i[0]
+    cm = 'INSERT INTO log VALUES (%d, "%s", "%s", "%s");' %(storyid, title, line, line)
+    c.execute(cm)
+    cm = 'INSERT INTO edited VALUES (%d, %d);' %(userid, storyid)
+    c.execute(cm)
+    closeDatabase(db)
 
 # END FUNCTIONS
 
@@ -102,8 +120,26 @@ def getStory(title):
     closeDatabase(db)
     return x
 
-def checkEdited():
-    return "edited"
+def getEdited(userid):
+    db, c = openDatabase()
+    cm = 'SELECT edited.storyId, title FROM edited, log WHERE edited.id = %d AND edited.storyId = log.storyId;' %userid
+    x = c.execute(cm)
+    final = []
+    for i in x:
+        final.append(i[1].encode("ascii"))
+    closeDatabase(db)
+    return final
+
+def getNotEdited(userid):
+    db, c = openDatabase()
+    x = getEdited(userid)
+    cm = 'SELECT title FROM log;'
+    final = []
+    for i in c.execute(cm):
+        if i[0].encode("ascii") not in x:
+            final.append(i[0].encode("ascii"))
+    closeDatabase(db)
+    return final
 
 # END ALL OUR GET FUNCTIONS
 
@@ -126,5 +162,15 @@ print getStoryID("Tail", c)
 print getStoryID("DW", c)
 print getStory("Tail", c)
 print getStory("DW", c)'''
+#addLine("We send our condolences.", "Tail", 1)
+'''print getEdited(0)
+print getEdited(1)
+print getEdited(2)
+print getEdited(3)
+print getNotEdited(0)
+print getNotEdited(1)
+print getNotEdited(2)
+print getNotEdited(3)'''
+#newStory("I had a fantastic day.", "Ice Cream", 3)
 
 # END ALL OUR TESTS
