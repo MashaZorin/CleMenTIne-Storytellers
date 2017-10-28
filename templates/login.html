@@ -6,6 +6,8 @@
 
 {% block body %}
 <h2> Login </h2>
+{% message=get_flashed_messages() %}
+{{message}}
 <form method="POST" action="/Authorize">
   Username:
   <br>
