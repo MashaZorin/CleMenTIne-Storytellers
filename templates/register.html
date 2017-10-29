@@ -3,7 +3,10 @@
 {% block title %}
 <title> Register </title>
 {% endblock %}
-
+{% set message=get_flashed_messages() %}
+{% if message %}
+{{message[0]}}
+{% endif %}
 {% block body %}
 <h2> Register </h2>
 <form method="POST" action="/CreateAccount">

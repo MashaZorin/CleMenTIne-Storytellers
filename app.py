@@ -39,9 +39,9 @@ def CreateAccount():
         flash("Username already taken")
         return redirect(url_for("Register"))
     #othwerwise, create the account and redirect to Root
-    database.createAccount(postedUsername, postedPassword)
+    database.updateUsers(postedUsername, postedPassword)
     flash ("Account succesfully created. Please login again")
-    return ridirect(url_for("Root"))
+    return redirect(url_for("Root"))
             
 @app.route("/Authorize", methods=["GET", "POST"])
 def Authorize():
@@ -90,14 +90,27 @@ def EditStory():
     #if user is not logged in, redirect to root
     if not checkSession():
         return redirect(url_for("Root"))
-    tempUserId = session["userId"]
+    tempUserID = session["userID"]
     #if user has already edited this story, redirect to Welcome
-    title = request.method("title")
-    if title not in database.checkEdited(tempUserId):
-        Flash("You have already edited this story")
+    title = request.args["title"]
+    if title not in database.getEdited(tempUserID):
+        print "hi"
+        flash("You have already edited this story")
         return redirect(url_for("Welcome"))
     #if user has not yet edited this story, render EditStory.html template
-    return render_template("EditStory.html")
+    return render_template("EditStory.html", title=title)
+    #ADD THIS INTO RENDER_TEMPLATE LINE --> lastLine = database.getLastLine(request.args["title"])
+
+@app.route("/EditStoryAction", methods=["GET", "POST"])
+def EditStoryAction():
+    addLine(request.form["line"], request.form["title"], session["userID"])
+    return redirect(url_for("ViewStory", title=request.form["title"]))
+    
+@app.route("/ViewStory")
+def ViewStory():
+    #render viewStory template, passing args for title (from query string), and story 
+    render_template("viewStory.html", title=request.args["title"], story = database.getStory(request.args["title"]))
+    
     
     
 
