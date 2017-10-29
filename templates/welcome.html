@@ -8,17 +8,26 @@
 <h2> Welcome,{{username}}! </h2>
 <table>
   <tr>
-    <th> Stories You've Added To </th>
-    <th> Stories Not Yet Added To </th>
+    <th> Stories To View </th>
   </tr>
-
-  {% for story in titles_edited %}
+  {% for title in titles_edited %}
   <tr>
     <td>
-      <form>
-	<input type="submit" value=story name="edited_title">
-      </form>
+		<a href=http://127.0.0.1:5000/ViewStory?title={{title|replace(" ", "+")}}> {{title}} </a>
     </td>
-  </tr>    
+  </tr>
+  {% endfor %}    
+</table>
+<table>
+  <tr>
+    <th> Stories To Edit </th>
+  </tr>
+  {% for title in titles_not_edited %}
+  <tr>
+    <td>
+		<a href=http://127.0.0.1:5000/EditStory?title={{title|replace(" ", "+")}}> {{title}} </a>
+    </td>
+  </tr>
+  {% endfor %}    
 </table>
 {% endblock %}

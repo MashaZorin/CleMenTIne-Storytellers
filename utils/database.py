@@ -128,6 +128,9 @@ def getEdited(userid):
     for i in x:
         final.append(i[1].encode("ascii"))
     closeDatabase(db)
+    '''newFinal = []
+    for title in final:
+        newFinal.append(title.replace(" ", "+"))'''
     return final
 
 def getNotEdited(userid):
@@ -139,6 +142,9 @@ def getNotEdited(userid):
         if i[0].encode("ascii") not in x:
             final.append(i[0].encode("ascii"))
     closeDatabase(db)
+    '''newFinal = []
+    for title in final:
+        newFinal.append(title.replace(" ", "+"))'''
     return final
 
 def getLastLine(title):

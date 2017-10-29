@@ -66,14 +66,13 @@ def Welcome():
     if not checkSession():
         return redirect(url_for("Root"))
     #otherwise, acess inputted data from form
-    tempUserId = session["userID"]
+    tempUserID = session["userID"]
     #renders Welcome template, and passes variables for username, and an array of edited, and not-edited stories
-    return "Welcome place holder"
-    
-    #add this stuff when database methods are ready
-    '''render_template("Welcome.html", userId = tempUserId, \
-    titles_edited = database.checkEdited(tempUserId), \
-    titles_not_edited = database.checkNotEdited(tempUserId))'''
+    #print database.getEdited(tempUserID)
+    #print database.getNotEdited(tempUserID)
+    return render_template("Welcome.html", username = tempUserID, \
+    titles_edited = database.getEdited(tempUserID), \
+    titles_not_edited = database.getNotEdited(tempUserID))
 
 @app.route("/Logout", methods=["GET", "POST"])
 def Logout():
@@ -93,8 +92,10 @@ def EditStory():
     tempUserID = session["userID"]
     #if user has already edited this story, redirect to Welcome
     title = request.args["title"]
-    if title not in database.getEdited(tempUserID):
-        print "hi"
+    #works with issue of user trying to edit a story they have already edited (commented out)
+    if title not in database.getNotEdited(tempUserID):
+        print title
+        print database.getNotEdited(tempUserID)
         flash("You have already edited this story")
         return redirect(url_for("Welcome"))
     #if user has not yet edited this story, render EditStory.html template
@@ -103,7 +104,7 @@ def EditStory():
 
 @app.route("/EditStoryAction", methods=["GET", "POST"])
 def EditStoryAction():
-    addLine(request.form["line"], request.form["title"], session["userID"])
+    database.addLine(request.form["line"], request.form["title"], session["userID"])
     return redirect(url_for("ViewStory", title=request.form["title"]))
     
 @app.route("/ViewStory")
