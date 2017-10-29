@@ -54,6 +54,7 @@ def Authorize():
     if database.checkUsernames(postedUsername):
         if database.authorize(postedUsername, postedPassword):
             session["userID"] = database.getUserID(postedUsername)
+            session["username"] = postedUsername
             return redirect(url_for("Welcome"))
     #if the submitted login information is not correct, redirect to Welcome, flash a message
     flash("Incorrect username, password combination")
@@ -70,7 +71,7 @@ def Welcome():
     #renders Welcome template, and passes variables for username, and an array of edited, and not-edited stories
     #print database.getEdited(tempUserID)
     #print database.getNotEdited(tempUserID)
-    return render_template("Welcome.html", username = tempUserID, \
+    return render_template("Welcome.html", username = session["username"], \
     titles_edited = database.getEdited(tempUserID), \
     titles_not_edited = database.getNotEdited(tempUserID))
 
@@ -79,6 +80,7 @@ def Logout():
     #if user is logged in, remove the session
     if checkSession():
         session.pop("userID")
+        session.pop("username")
         flash("Successfuly logged out")
     #redirect to Root regardless
     return redirect(url_for("Root"))
