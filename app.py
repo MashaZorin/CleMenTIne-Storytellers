@@ -75,7 +75,7 @@ def Welcome():
     titles_edited = database.checkEdited(tempUserId), \
     titles_not_edited = database.checkNotEdited(tempUserId))'''
 
-@app.route("/Logout", methods=["GET, POST"])
+@app.route("/Logout", methods=["GET", "POST"])
 def Logout():
     #if user is logged in, remove the session
     if checkSession():
