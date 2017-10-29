@@ -12,3 +12,6 @@ built getEdited() and finished addLine().
 
 tiffanyC -- 2017-10-28 13:20
 built getNotEdited() and newStory(). tested everything.
+
+tiffanyC -- 2017-10-29 12:26
+built and tested getLastLine().

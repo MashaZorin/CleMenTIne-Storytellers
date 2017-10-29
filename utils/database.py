@@ -141,6 +141,13 @@ def getNotEdited(userid):
     closeDatabase(db)
     return final
 
+def getLastLine(title):
+    db, c = openDatabase()
+    cm = 'SELECT lastLine FROM log WHERE title = "%s"' %title
+    for i in c.execute(cm):
+        x = i[0].encode('ascii')
+    return x
+
 # END ALL OUR GET FUNCTIONS
 
 
@@ -172,5 +179,8 @@ print getNotEdited(1)
 print getNotEdited(2)
 print getNotEdited(3)'''
 #newStory("I had a fantastic day.", "Ice Cream", 3)
+'''print getLastLine("DW")
+print getLastLine("Tail")
+print getLastLine("Ice Cream")'''
 
 # END ALL OUR TESTS
