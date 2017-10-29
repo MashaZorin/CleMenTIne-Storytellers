@@ -94,13 +94,12 @@ def EditStory():
     title = request.args["title"]
     #works with issue of user trying to edit a story they have already edited (commented out)
     if title not in database.getNotEdited(tempUserID):
-        print title
-        print database.getNotEdited(tempUserID)
+        #print title
+        #print database.getNotEdited(tempUserID)
         flash("You have already edited this story")
         return redirect(url_for("Welcome"))
     #if user has not yet edited this story, render EditStory.html template
-    return render_template("EditStory.html", title=title)
-    #ADD THIS INTO RENDER_TEMPLATE LINE --> lastLine = database.getLastLine(request.args["title"])
+    return render_template("EditStory.html", title=title, lastLine = database.getLastLine(request.args["title"]))
 
 @app.route("/EditStoryAction", methods=["GET", "POST"])
 def EditStoryAction():
@@ -110,11 +109,16 @@ def EditStoryAction():
 @app.route("/ViewStory")
 def ViewStory():
     #render viewStory template, passing args for title (from query string), and story 
-    render_template("viewStory.html", title=request.args["title"], story = database.getStory(request.args["title"]))
+    return render_template("viewStory.html", title=request.args["title"], story = database.getStory(request.args["title"]))
     
+@app.route("/CreateStory")
+def CreateStory():
+    return render_template("CreateStory.html")
     
-    
-
+@app.route("/CreateStoryAction", methods=["GET", "POST"])
+def CreateStoryAction():
+    database.newStory(request.form["line"], request.form["title"], session["userID"])
+    return redirect(url_for("ViewStory", title=request.form["title"]))
 
 
 

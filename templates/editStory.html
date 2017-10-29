@@ -1,9 +1,11 @@
+
 <form method="POST" action="/EditStoryAction">
-	<h> {{title}} <h>
-		<br>
-Line:
+<h1>{{title}} </h1>
+Previous Line: {{lastLine}}
+<br>
+New Line:
   <input type="text" name="line">
   <br>
-  <input type="hidden" name="title" value={{title}}>
+  <input type="hidden" name="title" value="{{title}}">
   <input type="submit" name="submit">
 </form>
