@@ -1,7 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title> Create a New Story </title>
+{% endblock %}
+
+{% block body %}
 <form method="POST" action="/CreateStoryAction">
-Title:
+  Title:
+  <br>
   <input type="text" name="title" value="Enter title here">
   <br>
-  Line: <input type="text" name="line" value="Enter story here">
-  <input type="submit" name="submit">
+  Line:
+  <br>
+  <input type="text" name="line" value="Enter story here">
+  <br>
+  <input type="submit" value="Create Story!" name="submit">
 </form>
+<br>
+<br>
+<form action="/Welcome">
+  <input type="submit" value="Back to Welcome Page" name="back">
+</form>
+<br>
+<form action="/Logout">
+  <input type="submit" value="Logout" name="logout">
+</form>
+{% endblock %}

@@ -1,3 +1,19 @@
-<h1> {{title}} </h1>
+{% extends "base.html" %}
 
+{% block title %}
+<title> View Story </title>
+{% endblock %}
+
+{% block body %}
+<h1> {{title}} </h1>
+<br>
 <p> {{story}} </p>
+<br>
+<form action="/Welcome">
+  <input type="submit" value="Back to Welcome Page" name="back">
+</form>
+<br>
+<form action="/Logout">
+  <input type="submit" value="Logout" name="logout">
+</form>
+{% endblock %}

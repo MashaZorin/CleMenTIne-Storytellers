@@ -1,4 +1,10 @@
+{% extends "base.html" %}
 
+{% block title %}
+<title> Add to Story {{title}} </title>
+{% endblock %}
+
+{% block body %}
 <form method="POST" action="/EditStoryAction">
 <h1>{{title}} </h1>
 Previous Line: {{lastLine}}
@@ -6,6 +12,11 @@ Previous Line: {{lastLine}}
 New Line:
   <input type="text" name="line">
   <br>
-  <input type="hidden" name="title" value="{{title}}">
-  <input type="submit" name="submit">
+  <input type="hidden" name="title" value={{title}}>
+  <input type="submit" value="Add" name="submit">
 </form>
+<br>
+<form action="/Logout">
+  <input type="submit" value="Logout" name="logout">
+</form>
+{% endblock %}
