@@ -4,41 +4,53 @@ Created repo
 mashaZ -- 2017-10-22 20:32
 Created design document
 
+cliveJ -- 2017-10-22 21:32
+Updated design document
+
 mashaZ -- 2017-10-24 13:40
 Created initial files (app.py, database.py, and html files) and created dummy database
 
 tiffanyC -- 2017-10-24 19:19
 built the updateUsers() and authorize() functions in database.py
-created routes for Root, Welcome, and Login
 
 mashaZ -- 2017-10-24 19:45
 Finished dummy database
+
+cliveJ -- 2017-10-24 20:19
+created routes for Root, Welcome, and Login
 
 mashaZ -- 2017-10-25 13:42
 Wrote base.html and wrote basic structure for login and register page
 
 tiffanyC -- 2017-10-25 14:03
 built get functions, checkUsernames(), and started addLine(). only checkUsernames() and getUserID() were tested.
+
+cliveJ -- 2017-10-25 18:03
 created routes for Register, CreateAccount
 
 tiffanyC -- 2017-10-26 14:00
 tested all functions that were build but not tested. added to addLine(). built openDatabase() and closeDatabase() functions so that database.py can be imported well into app.py.
+
+cliveJ -- 2017-10-26 19:01
 created routes for EditStory, EditStoryAction, ViewStory
 
 tiffanyC -- 2017-10-27 11:20
 built getEdited() and finished addLine().
-wrote html for EditStory, ViewStory, Welcome
 
 tiffanyC -- 2017-10-28 13:20
 built getNotEdited() and newStory(). tested everything.
-tested everything
+
+cliveJ -- 2017-10-28 14:19
+tested everything, fixed bugs
 
 mashaZ -- 2017-10-28 16:08
 Updated login and register html files and started welcome.html
 
 tiffanyC -- 2017-10-29 12:26
 built and tested getLastLine().
-fixed issue with spacing in multi-word titles, tested everything, wrote mini description in ReadMe
+
+cliveJ -- 2017-10-29 12:28
+wrote html for EditStory, ViewStory, Welcome
 
 mashaZ -- 2017-10-29 12:31
 Added link to register page in login.html
@@ -48,3 +60,6 @@ Added link to login page in register.html
 
 mashaZ -- 2017-10-29 18:35
 Added logout buttons and back to welcome page buttons to html code.
+
+cliveJ -- 2017-10-29 20:18
+fixed issue with spacing in multi-word titles, tested everything, wrote mini description in ReadMe
