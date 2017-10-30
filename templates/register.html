@@ -8,7 +8,47 @@
 {{message[0]}}
 {% endif %}
 {% block body %}
-<h2> Register </h2>
+
+<style> 
+input[type=text], select {
+   width: 50%;
+    display: inline-block;
+    padding: 5px 20px;
+    border: 2px solid #ccc;
+    margin:20px 0px;
+
+}
+input[type=password], select {
+    width: 50%;
+    display: inline-block;
+    padding: 5px 20px;
+    border: 2px solid #ccc;
+    margin:20px 0px;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #FFF233;
+    padding: 20px 20px;
+    margin:10px 10px;
+    
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+input[type=submit]:hover {
+    background-color: #FCB900;
+}
+div {
+    background-color: #FFF9D8;
+    padding: 50px;
+}
+</style>
+
+
+
+
+<div align=center>
+<h2><center> Register </h2></center>
 <form method="POST" action="/CreateAccount">
   Username:
   <br>
@@ -24,4 +64,5 @@
 <form action="/">
   <input type="submit" value="Login here" name="login">
 </form>
+</div>
 {% endblock %}

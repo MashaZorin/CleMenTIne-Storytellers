@@ -63,3 +63,6 @@ Added logout buttons and back to welcome page buttons to html code.
 
 cliveJ -- 2017-10-29 20:18
 fixed issue with spacing in multi-word titles, tested everything, wrote mini description in ReadMe
+
+irisT — 2017-10-39 08:10
+Added css to html files

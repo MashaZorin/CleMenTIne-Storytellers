@@ -5,14 +5,35 @@
 {% endblock %}
 
 {% block body %}
+
+
+<style>
+	div {
+ 	   background-color: #FFF9D8;
+ 	   padding: 30px;
+	}
+	input[type=submit] {
+   		width: 100%;
+    	background-color: #FFF233;
+   		padding: 20px 20px;
+   		margin:10px 10px;
+    	border: 1px solid #ccc;
+    	cursor: pointer;
+}
+	input[type=submit]:hover {
+    	background-color: #FCB900;
+}
+</style>
+
+<div>
 <h2> Welcome, {{username}}! </h2>
 <table>
   <tr>
-    <th> Stories To View </th>
+    <th> Stories To View:<br></th>
   </tr>
   {% for title in titles_edited %}
   <tr>
-    <td>
+    <td align="center">
 		<a href=http://127.0.0.1:5000/ViewStory?title={{title|replace(" ", "+")}}> {{title}} </a>
     </td>
   </tr>
@@ -20,17 +41,18 @@
 </table>
 <table>
   <tr>
-    <th> Stories To Edit </th>
+    <th> Stories To Edit: </th>
   </tr>
   {% for title in titles_not_edited %}
   <tr>
-    <td>
+    <td align="center">
 		<a href=http://127.0.0.1:5000/EditStory?title={{title|replace(" ", "+")}}> {{title}} </a>
     </td>
   </tr>
   {% endfor %}    
 </table>
 <br>
+
 <form action="/CreateStory">
   <input type="submit" value="Create New Story">
 </form>
@@ -38,4 +60,5 @@
 <form action="/Logout">
   <input type="submit" value="Logout" name="logout">
 </form>
+</div>
 {% endblock %}

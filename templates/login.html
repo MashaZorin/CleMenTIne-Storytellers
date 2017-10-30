@@ -5,12 +5,50 @@
 {% endblock %}
 
 {% block body %}
-<h2> Login </h2>
+
+<style> 
+input[type=text], select {
+   width: 50%;
+    display: inline-block;
+    padding: 5px 20px;
+    border: 2px solid #ccc;
+    margin:20px 0px;
+
+}
+input[type=password], select {
+    width: 50%;
+    display: inline-block;
+    padding: 5px 20px;
+    border: 2px solid #ccc;
+    margin:20px 0px;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #FFF233;
+    padding: 20px 20px;
+    margin:10px 10px;
+    
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+input[type=submit]:hover {
+    background-color: #FCB900;
+}
+div {
+    background-color: #FFF9D8;
+    padding: 50px;
+}
+</style>
+
+<center><h2> Login </h2></center>
 {% set message=get_flashed_messages() %}
 {% if message %}
 <b>{{message[0]}}</b>
 {% endif %}
 <br>
+
+<div>
 <form method="POST" action="/Authorize">
   Username:
   <br>
@@ -26,4 +64,5 @@
 <form action="/Register">
   <input type="submit" value="Register here" name="register">
 </form>
+</div>
 {% endblock %}

@@ -5,24 +5,56 @@
 {% endblock %}
 
 {% block body %}
-<form method="POST" action="/CreateStoryAction">
-  Title:
-  <br>
-  <input type="text" name="title" value="Enter title here">
-  <br>
-  Line:
-  <br>
-  <input type="text" name="line" value="Enter story here">
-  <br>
-  <input type="submit" value="Create Story!" name="submit">
-</form>
-<br>
-<br>
-<form action="/Welcome">
-  <input type="submit" value="Back to Welcome Page" name="back">
-</form>
-<br>
-<form action="/Logout">
-  <input type="submit" value="Logout" name="logout">
-</form>
+
+
+<style>
+	div {
+ 	   background-color: #FFF9D8;
+ 	   padding: 30px;
+	}
+
+	input[type=text], select {
+   		width: 50%;
+    	display: inline-block;
+    	padding: 5px 20px;
+    	border: 2px solid #ccc;
+    	margin:20px 0px;
+}
+
+	input[type=submit] {
+   		width: 100%;
+    	background-color: #FFF233;
+   		padding: 20px 20px;
+   		margin:10px 10px;
+    	border: 1px solid #ccc;
+    	cursor: pointer;
+}
+	input[type=submit]:hover {
+    	background-color: #FCB900;
+}
+</style>
+
+<div>
+	<h2>Create your own story!</h2>
+	<form method="POST" action="/CreateStoryAction">
+	  Title:
+	  <br>
+	  <input type="text" name="title" value="Enter title here">
+	  <br>
+	  Line:
+	  <br>
+	  <input type="text" name="line" value="Enter story here">
+	  <br>
+	  <input type="submit" value="Create Story!" name="submit">
+	</form>
+	<br>
+
+	<form action="/Welcome">
+	  <input type="submit" value="Back to Welcome Page" name="back">
+	</form>
+	<br>
+	<form action="/Logout">
+	  <input type="submit" value="Logout" name="logout">
+	</form>
+</div>
 {% endblock %}

@@ -5,15 +5,37 @@
 {% endblock %}
 
 {% block body %}
-<h1> {{title}} </h1>
-<br>
-<p> {{story}} </p>
-<br>
-<form action="/Welcome">
-  <input type="submit" value="Back to Welcome Page" name="back">
-</form>
-<br>
-<form action="/Logout">
-  <input type="submit" value="Logout" name="logout">
-</form>
+
+
+<style>
+	div {
+ 	   background-color: #FFF9D8;
+ 	   padding: 30px;
+	}
+	input[type=submit] {
+   		width: 100%;
+    	background-color: #FFF233;
+   		padding: 20px 20px;
+   		margin:10px 10px;
+    	border: 1px solid #ccc;
+    	cursor: pointer;
+}
+	input[type=submit]:hover {
+    	background-color: #FCB900;
+}
+</style>
+
+<div>
+	<h1> {{title}} </h1>
+	<br>
+	<p> Your Story: <br><br>{{story}} </p>
+	<br>
+	<form action="/Welcome">
+	  <input type="submit" value="Back to Welcome Page" name="back">
+	</form>
+	<br>
+	<form action="/Logout">
+	  <input type="submit" value="Logout" name="logout">
+	</form>
+</div>
 {% endblock %}
