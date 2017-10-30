@@ -1,17 +1,23 @@
 tiffanyC -- 2017-10-24 19:19
 built the updateUsers() and authorize() functions in database.py
+created routes for Root, Welcome, and Login
 
 tiffanyC -- 2017-10-25 14:03
 built get functions, checkUsernames(), and started addLine(). only checkUsernames() and getUserID() were tested.
+created routes for Register, CreateAccount
 
 tiffanyC -- 2017-10-26 14:00
 tested all functions that were build but not tested. added to addLine(). built openDatabase() and closeDatabase() functions so that database.py can be imported well into app.py.
+created routes for EditStory, EditStoryAction, ViewStory
 
 tiffanyC -- 2017-10-27 11:20
 built getEdited() and finished addLine().
+wrote html for EditStory, ViewStory, Welcome
 
 tiffanyC -- 2017-10-28 13:20
 built getNotEdited() and newStory(). tested everything.
+tested everything
 
 tiffanyC -- 2017-10-29 12:26
 built and tested getLastLine().
+fixed issue with spacing in multi-word titles, tested everything, wrote mini description in ReadMe
