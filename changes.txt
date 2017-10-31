@@ -1,0 +1,22 @@
+CleMenTIne Storytellers - Masha Zorin, Tiffany Chen, Clive Johnston, Iris Tao
+
+Important changes:
+
+Changes to routes:
+-added in between routes which completed updating database and session tasks:
+       -/Authorize : authorized login info
+       -/CreateAccount : checked that username was not already taken
+       -/EditStoryAction : updated story in log table in database
+       -/CreateStoryAction : added a new story to log table in database
+       -/Logout : removed user from session
+-divided route /Story into /EditStory and /ViewStory
+
+Changes to database:
+-added storyId into tables so stories will be compared based on numerics
+
+Changes to frontend:
+-None
+
+Changes to design document:
+-added details regarding database.py and html files
+-all above changes
